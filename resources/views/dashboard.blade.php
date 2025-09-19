@@ -1,44 +1,59 @@
 <!DOCTYPE html>
-<x-layouts.app :title="__('Dashboard')">
-<div class="flex h-full w-full flex-1 flex-col gap-4 rounded-xl">
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Admin CRUD (Interactive)</title>
+  <title>Add User</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
-<body class="bg-gray-100 min-h-screen flex items-center justify-center">
-  <div class="w-full max-w-4xl bg-white rounded-2xl shadow-lg p-8">
-    <h1 class="text-2xl font-bold text-gray-800 mb-6 text-center">Admin CRUD</h1>
+<body class="bg-white min-h-screen p-8">
 
-    <!-- Form -->
-    <form id="crudForm" class="flex flex-col md:flex-row gap-3 mb-6">
-      <input type="hidden" id="userId">
-      <input type="text" id="name" placeholder="Name" required
-        class="flex-1 px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-400 outline-none">
-      <input type="email" id="email" placeholder="Email" required
-        class="flex-1 px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-400 outline-none">
-      <button type="submit"
-        class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition">Save</button>
-      <button type="button" onclick="resetForm()"
-        class="bg-gray-300 hover:bg-gray-400 text-black px-4 py-2 rounded-lg transition">Cancel</button>
+  <!-- Top Picture -->
+  <div class="flex justify-center mb-6">
+    <!-- Replace the src with your own file path -->
+    <img src="Hfiz.png" alt="Logo" 
+         class="w-32 h-32 rounded-full object-cover shadow-lg border">
+  </div>
+
+  <!-- Top bar -->
+  <div class="flex justify-between items-center mb-6">
+    <h1 class="text-2xl font-bold text-gray-800">Admin CRUD</h1>
+    <!-- Logout button -->
+    <form method="POST" action="{{ route('logout') }}">
+      @csrf
+      <button type="submit" 
+        class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg transition">
+        Logout
+      </button>
     </form>
+  </div>
 
-    <!-- Table -->
-    <div class="overflow-x-auto">
-      <table class="w-full border-collapse">
-        <thead>
-          <tr class="bg-blue-100 text-left">
-            <th class="p-3 border">ID</th>
-            <th class="p-3 border">Name</th>
-            <th class="p-3 border">Email</th>
-            <th class="p-3 border">Actions</th>
-          </tr>
-        </thead>
-        <tbody id="tableBody" class="bg-white"></tbody>
-      </table>
-    </div>
+  <!-- Form -->
+  <form id="crudForm" class="flex flex-col md:flex-row gap-3 mb-6">
+    <input type="hidden" id="userId">
+    <input type="text" id="name" placeholder="Name" required
+      class="flex-1 px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-400 outline-none">
+    <input type="email" id="email" placeholder="Email" required
+      class="flex-1 px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-400 outline-none">
+    <button type="submit"
+      class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition">Save</button>
+    <button type="button" onclick="resetForm()"
+      class="bg-gray-300 hover:bg-gray-400 text-black px-4 py-2 rounded-lg transition">Cancel</button>
+  </form>
+
+  <!-- Table -->
+  <div class="overflow-x-auto">
+    <table class="w-full border-collapse">
+      <thead>
+        <tr class="bg-blue-100 text-left">
+          <th class="p-3 border">ID</th>
+          <th class="p-3 border">Name</th>
+          <th class="p-3 border">Email</th>
+          <th class="p-3 border">Actions</th>
+        </tr>
+      </thead>
+      <tbody id="tableBody" class="bg-white"></tbody>
+    </table>
   </div>
 
   <script>
@@ -130,5 +145,3 @@
   </script>
 </body>
 </html>
-</div>
-</x-layouts.app>
